@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEKNOLAB — selected work</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EFEDE7;
+    --ink:#141311;
+    --cobalt:#2A4BDB;
+    --orange:#E2632B;
+    --line:rgba(20,19,17,0.14);
+    --muted:#6B675F;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:'Inter', sans-serif;
+  }
+  h1,h2,h3,.grotesk{ font-family:'Space Grotesk', sans-serif; }
+  a{ color:inherit; text-decoration:none; }
+  img,video{ max-width:100%; display:block; }
+  ::selection{ background:var(--cobalt); color:var(--paper); }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:1.3rem 6%; background:rgba(239,237,231,0.88);
+    backdrop-filter:blur(6px); border-bottom:1px solid var(--line);
+  }
+  .logo{ display:flex; align-items:center; gap:0.65rem; }
+  .logo img{ height:26px; width:auto; }
+  .logo span{ font-weight:600; font-size:1.15rem; letter-spacing:-0.01em; }
+  nav ul{ display:flex; gap:2rem; list-style:none; font-size:0.95rem; }
+  nav a{ color:var(--muted); transition:color 0.15s; }
+  nav a:hover{ color:var(--ink); }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--cobalt); outline-offset:3px; }
+
+  /* ---------- INTRO ---------- */
+  .intro{ padding:3.4rem 6% 2.6rem; max-width:720px; }
+  .intro .kicker{ color:var(--cobalt); font-size:0.95rem; margin-bottom:1rem; }
+  .intro h1{ font-size:clamp(2rem,4.2vw,3rem); font-weight:600; line-height:1.15; }
+  .intro p{ margin-top:1.3rem; color:var(--muted); font-size:1.08rem; line-height:1.65; max-width:540px; }
+
+  /* ---------- PROJECTS ---------- */
+  #work{
+    display:grid; grid-template-columns:1fr 1fr; gap:1px;
+    background:var(--line); border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .project{
+    display:flex; flex-direction:column;
+    padding:2.6rem 4% 2.8rem; background:var(--paper);
+  }
+  .project .media{ position:relative; }
+  .project .media .frame{
+    aspect-ratio:16/10; width:100%; border-radius:2px; overflow:hidden;
+    background:linear-gradient(135deg,#DAD6CB,#C7C2B4);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; position:relative;
+  }
+  .project .media .frame video{ width:100%; height:100%; object-fit:cover; }
+  .project .media .frame img{ width:100%; height:100%; object-fit:cover; }
+  .placeholder-note{
+    position:absolute; inset:0; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:0.6rem; color:var(--muted);
+    font-size:0.85rem; text-align:center; padding:1rem;
+  }
+  .play-badge{
+    width:44px; height:44px; border-radius:50%; background:var(--orange);
+    color:var(--paper); display:flex; align-items:center; justify-content:center;
+    flex-shrink:0; font-size:0.9rem;
+  }
+  .project .text{ margin-top:1.4rem; }
+  .project .text .num{ font-family:'Space Grotesk',sans-serif; color:var(--cobalt); font-size:0.9rem; margin-bottom:0.6rem; }
+  .project:nth-child(even) .text .num{ color:var(--orange); }
+  .project .text h3{ font-size:1.3rem; font-weight:600; line-height:1.2; }
+  .project .text p{ margin-top:0.6rem; color:var(--muted); line-height:1.55; font-size:0.95rem; }
+  .tags{ display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:1rem; }
+  .tags span{
+    font-size:0.78rem; color:var(--ink); border:1px solid var(--line);
+    padding:0.25rem 0.65rem; border-radius:100px;
+  }
+  .project-link{
+    display:inline-block; margin-top:1rem; font-size:0.9rem;
+    color:var(--cobalt); border-bottom:1px solid var(--cobalt); padding-bottom:2px;
+  }
+  .project:nth-child(even) .project-link{ color:var(--orange); border-bottom-color:var(--orange); }
+
+  @media (max-width:820px){
+    #work{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:3rem 6%; border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem;
+    color:var(--muted); font-size:0.9rem;
+  }
+
+  /* ---------- LIGHTBOX ---------- */
+  #lightbox{
+    position:fixed; inset:0; background:rgba(20,19,17,0.92); z-index:100;
+    display:none; align-items:center; justify-content:center; padding:5%;
+  }
+  #lightbox.open{ display:flex; }
+  #lightbox img{ max-height:90vh; border-radius:2px; }
+  #lightbox-close{
+    position:absolute; top:2rem; right:6%; background:none; border:none;
+    color:var(--paper); font-size:1rem; cursor:pointer; font-family:'Inter';
+  }
+
+  @media (prefers-reduced-motion:reduce){ html{ scroll-behavior:auto; } }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="#" class="logo" aria-label="TEKNOLAB home">
+    <img src="logo.png" alt="TEKNOLAB">
+  </a>
+  <nav>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#footer">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="intro">
+  <div class="kicker grotesk">Projects</div>
+  <h1>TeknoLab is sick as fuck</h1>
+  <p>We build shit, for fun.</p>
+</section>
+
+<section id="work">
+
+  <article class="project">
+    <div class="media">
+      <div class="frame" onclick="document.getElementById('v1').play()">
+        <!-- Replace src with your own video file or hosted URL -->
+        <video id="v1" controls poster="" preload="metadata">
+          <source src="twvtol.mp4" type="video/mp4">
+        </video>
+        <div class="placeholder-note" id="ph-v1">
+          <div class="play-badge">▶</div>
+          <span>Drop a video file in as "your-video-1.mp4" — this frame will play it directly.</span>
+        </div>
+      </div>
+    </div>
+    <div class="text">
+      <div class="num">01</div>
+      <h3>Tilt Wing VTOL</h3>
+      <p>A plane that can takeoff without a runway, because it does not give a fuck.</p>
+      <div class="tags"><span>Engineering</span><span>Tool</span><span>Year</span></div>
+      <a class="project-link" href="#">View project ↗</a>
+    </div>
+  </article>
+
+  <article class="project">
+    <div class="media">
+      <div class="frame" onclick="openLightbox('your-image-1.jpg')">
+        <!-- Replace src with your own image file -->
+        <img src="your-image-1.jpg" alt="Screenshot of Project two" onerror="this.style.display='none'">
+        <div class="placeholder-note" id="ph-i1">
+          <span>Drop an image in as "your-image-1.jpg" to fill this frame. Click images to open them larger.</span>
+        </div>
+      </div>
+    </div>
+    <div class="text">
+      <div class="num">02</div>
+      <h3>Second project</h3>
+      <p>Describe the second project the same way — what it is, the core feature, and why it's worth showing. One image or a short screen recording works well here.</p>
+      <div class="tags"><span>Category</span><span>Tool</span><span>Year</span></div>
+      <a class="project-link" href="#">View project ↗</a>
+    </div>
+  </article>
+
+  <article class="project">
+    <div class="media">
+      <div class="frame" onclick="document.getElementById('v2').play()">
+        <video id="v2" controls poster="" preload="metadata">
+          <source src="your-video-2.mp4" type="video/mp4">
+        </video>
+        <div class="placeholder-note" id="ph-v2">
+          <div class="play-badge">▶</div>
+          <span>Drop a second video in as "your-video-2.mp4".</span>
+        </div>
+      </div>
+    </div>
+    <div class="text">
+      <div class="num">03</div>
+      <h3>Third project</h3>
+      <p>A third slot for a walkthrough, demo reel, or before/after clip. Alternating the layout keeps a long page from feeling monotonous as you add more.</p>
+      <div class="tags"><span>Category</span><span>Tool</span><span>Year</span></div>
+      <a class="project-link" href="#">View project ↗</a>
+    </div>
+  </article>
+
+</section>
+
+<footer id="footer">
+  <div class="grotesk">TEKNOLAB</div>
+  <div>you@example.com — swap in your own contact details</div>
+</footer>
+
+<div id="lightbox" onclick="closeLightbox()">
+  <button id="lightbox-close" aria-label="Close">Close ✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  // hide the placeholder note automatically once a real file loads successfully
+  document.querySelectorAll('video').forEach(v=>{
+    v.addEventListener('loadeddata', ()=>{
+      const note = v.parentElement.querySelector('.placeholder-note');
+      if(note) note.style.display='none';
+    });
+  });
+  document.querySelectorAll('.media img').forEach(img=>{
+    img.addEventListener('load', ()=>{
+      if(img.naturalWidth > 0){
+        const note = img.parentElement.querySelector('.placeholder-note');
+        if(note) note.style.display='none';
+        img.style.display='block';
+      }
+    });
+  });
+
+  function openLightbox(src){
+    const box = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    // only open if the image actually exists / loaded on the page
+    const test = new Image();
+    test.onload = ()=>{ img.src = src; box.classList.add('open'); };
+    test.src = src;
+  }
+  function closeLightbox(){
+    document.getElementById('lightbox').classList.remove('open');
+  }
+</script>
+
+</body>
+</html>
