@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TEKNOLAB — selected work</title>
+<title>TEKNOLAB — Projects</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -43,8 +43,8 @@
     background:linear-gradient(90deg, transparent, var(--cyan) 20%, var(--orange) 80%, transparent);
     opacity:0.55;
   }
-  .logo{ display:flex; align-items:center; gap:0.65rem; filter:brightness(0) invert(1); }
-  .logo img{ height:24px; width:auto; }
+  .logo{ display:flex; align-items:center; gap:0.65rem; background:#F2F0EA; padding:0.4rem 0.7rem; border-radius:3px; }
+  .logo img{ height:22px; width:auto; }
   nav ul{ display:flex; gap:2rem; list-style:none; font-size:0.82rem; }
   nav a{ color:var(--muted); transition:color 0.15s; }
   nav a::before{ content:"// "; color:var(--orange); }
@@ -53,9 +53,10 @@
 
   /* ---------- INTRO ---------- */
   .intro{ padding:3.6rem 6% 2.8rem; max-width:720px; }
-  .intro .kicker{ color:var(--cyan); font-size:0.85rem; margin-bottom:1rem; letter-spacing:0.02em; }
-  .intro .kicker::before{ content:"["; color:var(--muted); }
-  .intro .kicker::after{ content:"]"; color:var(--muted); }
+  .kicker{ color:var(--cyan); font-size:0.85rem; margin-bottom:1rem; letter-spacing:0.02em; }
+  .kicker::before{ content:"["; color:var(--muted); }
+  .kicker::after{ content:"]"; color:var(--muted); }
+  .intro .kicker{ color:var(--cyan); }
   .intro h1{ font-family:'Space Grotesk',sans-serif; font-size:clamp(2rem,4.2vw,3rem); font-weight:600; line-height:1.15; }
   .intro p{ margin-top:1.3rem; color:var(--muted); font-size:0.95rem; line-height:1.7; max-width:540px; }
 
@@ -68,16 +69,18 @@
     display:flex; flex-direction:column;
     padding:2.6rem 4% 2.8rem; background:var(--bg);
   }
-  .project .media{ position:relative; padding:10px; }
-  .project .media::before, .project .media::after,
-  .project .media .frame::before, .project .media .frame::after{
+  .bracket{ position:relative; padding:10px; }
+  .bracket::before, .bracket::after,
+  .bracket .frame::before, .bracket .frame::after{
     content:""; position:absolute; width:16px; height:16px; z-index:2;
     border-color:var(--cyan); border-style:solid; border-width:0;
   }
-  .project .media::before{ top:0; left:0; border-top-width:2px; border-left-width:2px; }
-  .project .media::after{ top:0; right:0; border-top-width:2px; border-right-width:2px; }
-  .project .media .frame::before{ bottom:0; left:0; border-bottom-width:2px; border-left-width:2px; border-color:var(--orange); }
-  .project .media .frame::after{ bottom:0; right:0; border-bottom-width:2px; border-right-width:2px; border-color:var(--orange); }
+  .bracket::before{ top:0; left:0; border-top-width:2px; border-left-width:2px; }
+  .bracket::after{ top:0; right:0; border-top-width:2px; border-right-width:2px; }
+  .bracket .frame::before{ bottom:0; left:0; border-bottom-width:2px; border-left-width:2px; border-color:var(--orange); }
+  .bracket .frame::after{ bottom:0; right:0; border-bottom-width:2px; border-right-width:2px; border-color:var(--orange); }
+  .frame.square{ aspect-ratio:1/1; }
+  .frame.qr{ aspect-ratio:1/1; }
   .project .media .frame{
     aspect-ratio:16/10; width:100%; overflow:hidden;
     background:var(--panel);
@@ -118,6 +121,25 @@
     #work{ grid-template-columns:1fr; }
   }
 
+  /* ---------- TEAM ---------- */
+  .section-head{ padding:3.6rem 6% 2rem; border-top:1px solid var(--line); }
+  .team-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:2.5rem;
+    padding:0 6% 4rem;
+  }
+  .person .frame{ background:var(--panel); overflow:hidden; }
+  .person .frame img{ width:100%; height:100%; object-fit:cover; }
+  .person h3{ font-family:'Space Grotesk',sans-serif; font-size:1.15rem; margin-top:1.2rem; }
+  .person p{ color:var(--muted); font-size:0.85rem; margin-top:0.4rem; }
+  @media (max-width:600px){ .team-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- CONNECT / QR ---------- */
+  .qr-grid{ display:flex; gap:2.4rem; flex-wrap:wrap; padding:0 6% 4rem; }
+  .qr-item{ width:170px; }
+  .qr-item .frame{ background:var(--panel); }
+  .qr-item .frame img{ width:100%; height:100%; object-fit:contain; padding:14px; background:#fff; }
+  .qr-item p{ color:var(--muted); font-size:0.78rem; margin-top:0.8rem; text-align:center; }
+
   /* ---------- FOOTER ---------- */
   footer{
     padding:3rem 6%; border-top:1px solid var(--line);
@@ -150,6 +172,7 @@
   <nav>
     <ul>
       <li><a href="#work">Work</a></li>
+      <li><a href="#team">Team</a></li>
       <li><a href="#footer">Contact</a></li>
     </ul>
   </nav>
@@ -157,14 +180,37 @@
 
 <section class="intro">
   <div class="kicker grotesk">Selected work</div>
-  <h1 class="grotesk">We make shit</h1>
+  <h1 class="grotesk">We build shit here at NTNU Ålesund</h1>
   <p>for fun.</p>
 </section>
 
 <section id="work">
 
   <article class="project">
-    <div class="media">
+    <div class="media bracket">
+      <div class="frame" onclick="document.getElementById('v0').play()">
+        <!-- Replace src with your own video file or hosted URL -->
+        <video id="v1" controls poster="" preload="metadata">
+          <source src="twvtol.mp4" type="video/mp4">
+          <source src="twvtol.mp4" type="video/quicktime">
+        </video>
+        <div class="placeholder-note" id="ph-v1">
+          <div class="play-badge">▶</div>
+          <span>"your-video-1.mp4".</span>
+        </div>
+      </div>
+    </div>
+    <div class="text">
+      <div class="num">PRJ_00</div>
+      <h3>Tilt Wing VTOL</h3>
+      <p>A plane that can takeoff without a runway, because it does not give a fuck.</p>
+      <div class="tags"><span>Mechatronics</span><span>Electronics</span></div>
+      <a class="project-link" href="#">View project ↗</a>
+    </div>
+  </article>
+
+  <article class="project">
+    <div class="media bracket">
       <div class="frame" onclick="document.getElementById('v1').play()">
         <!-- Replace src with your own video file or hosted URL -->
         <video id="v1" controls poster="" preload="metadata">
@@ -173,40 +219,42 @@
         </video>
         <div class="placeholder-note" id="ph-v1">
           <div class="play-badge">▶</div>
-          <span>Loading...</span>
+          <span>video here "your-video-1.mp4".</span>
         </div>
       </div>
     </div>
     <div class="text">
       <div class="num">PRJ_01</div>
-      <h3>Tilt Wing VTOL</h3>
-      <p>A plane that can takeoff without a runway, because it does not give a fuck</p>
-      <div class="tags"><span>Engineering</span><span>Tool</span><span>Year</span></div>
+      <h3>2nd Project</h3>
+      <p>Miguel, add description here</p>
+      <div class="tags"><span>Something</span></div>
       <a class="project-link" href="#">View project ↗</a>
     </div>
   </article>
 
   <article class="project">
-    <div class="media">
-      <div class="frame" onclick="openLightbox('your-image-1.jpg')">
-        <!-- Replace src with your own image file -->
-        <img src="your-image-1.jpg" alt="Screenshot of Project two" onerror="this.style.display='none'">
-        <div class="placeholder-note" id="ph-i1">
-          <span>Loading...</span>
+    <div class="media bracket">
+      <div class="frame" onclick="document.getElementById('v2').play()">
+        <video id="v2" controls poster="" preload="metadata">
+          <source src="your-video-2.mp4" type="video/mp4">
+        </video>
+        <div class="placeholder-note" id="ph-v2">
+          <div class="play-badge">▶</div>
+          <span>add video here dumbass "video-2.mp4".</span>
         </div>
       </div>
     </div>
     <div class="text">
       <div class="num">PRJ_02</div>
-      <h3>Second project</h3>
-      <p>Describe the second project the same way — what it is, the core feature, and why it's worth showing. One image or a short screen recording works well here.</p>
-      <div class="tags"><span>Category</span><span>Tool</span><span>Year</span></div>
+      <h3>Third project</h3>
+      <p>To-do: I'll do it later.</p>
+      <div class="tags"><span>Stuff</span></div>
       <a class="project-link" href="#">View project ↗</a>
     </div>
   </article>
 
   <article class="project">
-    <div class="media">
+    <div class="media bracket">
       <div class="frame" onclick="document.getElementById('v2').play()">
         <video id="v2" controls poster="" preload="metadata">
           <source src="your-video-2.mp4" type="video/mp4">
@@ -219,18 +267,76 @@
     </div>
     <div class="text">
       <div class="num">PRJ_03</div>
-      <h3>Third project</h3>
-      <p>A third slot for a walkthrough, demo reel, or before/after clip. Alternating the layout keeps a long page from feeling monotonous as you add more.</p>
-      <div class="tags"><span>Category</span><span>Tool</span><span>Year</span></div>
+      <h3>Fourth project</h3>
+      <p>To-Do: zzzzzzzz</p>
+      <div class="tags"><span>Bed</span></div>
       <a class="project-link" href="#">View project ↗</a>
     </div>
   </article>
 
 </section>
 
+<div class="section-head">
+  <div class="kicker grotesk">Team</div>
+</div>
+<div class="team-grid">
+  <div class="person">
+    <div class="media bracket">
+      <div class="frame square">
+        <img src="me.png" alt="Team member one" onerror="this.style.display='none'">
+        <div class="placeholder-note" id="ph-p1">
+          <span>me.png</span>
+        </div>
+      </div>
+    </div>
+    <h3>FamilyGuyFunnyMoments17</h3>
+    <p>"me".</p>
+  </div>
+  <div class="person">
+    <div class="media bracket">
+      <div class="frame square">
+        <img src="person-2.jpg" alt="Team member two" onerror="this.style.display='none'">
+        <div class="placeholder-note" id="ph-p2">
+          <span>Drop a photo in as "person-2.jpg".</span>
+        </div>
+      </div>
+    </div>
+    <h3>Name</h3>
+    <p>Role or one-line bio.</p>
+  </div>
+</div>
+
+<div class="section-head">
+  <div class="kicker grotesk">Connect</div>
+</div>
+<div class="qr-grid">
+  <div class="qr-item">
+    <div class="media bracket">
+      <div class="frame qr">
+        <img src="instagram.png" alt="QR code" onerror="this.style.display='none'">
+        <div class="placeholder-note" id="ph-qr1">
+          <span>Drop a QR code image in as "qr-1.png".</span>
+        </div>
+      </div>
+    </div>
+    <p>Scan — Instagram</p>
+  </div>
+  <div class="qr-item">
+    <div class="media bracket">
+      <div class="frame qr">
+        <img src="qr-2.png" alt="QR code" onerror="this.style.display='none'">
+        <div class="placeholder-note" id="ph-qr2">
+          <span>Drop a QR code image in as "qr-2.png".</span>
+        </div>
+      </div>
+    </div>
+    <p>placeholder</p>
+  </div>
+</div>
+
 <footer id="footer">
   <div class="grotesk">TEKNOLAB</div>
-  <div>you@example.com — swap in your own contact details</div>
+  <div>don't contact us</div>
 </footer>
 
 <div id="lightbox" onclick="closeLightbox()">
